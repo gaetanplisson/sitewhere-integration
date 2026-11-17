@@ -65,10 +65,8 @@ public class InfluxDbClient extends TenantEngineLifecycleComponent {
 	    getLogger().info("Connected successfully.");
 	}
 	if (getConfiguration().isEnableBatch()) {
-	    getLogger().info(String.format("InfluxDB batch mode enabled with interval set to %s ms.",
-		    String.valueOf(getConfiguration().getBatchIntervalMs())));
-	    getInflux().enableBatch(getConfiguration().getBatchChunkSize(), getConfiguration().getBatchIntervalMs(),
-		    TimeUnit.MILLISECONDS);
+	    getLogger().info("InfluxDB batch mode enabled with actions=1 and duration=1000 ms.");
+	    getInflux().enableBatch(1, 1000, TimeUnit.MILLISECONDS);
 	}
 	LogLevel level = convertLogLevel(getConfiguration().getLogLevel());
 	getInflux().setLogLevel(level);
