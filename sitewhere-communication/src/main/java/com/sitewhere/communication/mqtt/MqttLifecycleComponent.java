@@ -35,6 +35,13 @@ public class MqttLifecycleComponent extends TenantEngineLifecycleComponent {
     /** Default connection timeout in seconds */
     public static final long DEFAULT_CONNECT_TIMEOUT_SECS = 5;
 
+    /**
+     * Seconds the PUBACK of a QoS 1 PUBLISH is waited for, as the echo-clock
+     * device (PUBACK_TIMEOUT): one message in flight per connection, as the
+     * clients of the microbenchmarks (berserker max-inflight 1)
+     */
+    public static final long DEFAULT_PUBACK_TIMEOUT_SECS = 5;
+
     /** Configuration parameters */
     private IMqttConfiguration configuration;
 

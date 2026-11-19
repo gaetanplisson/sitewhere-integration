@@ -12,7 +12,7 @@ ext['solr.version'] = '6.4.0'
 
 allprojects {
 	group = 'com.sitewhere'
-	version = '3.0.11e'
+	version = '3.0.11h'
 	
 	repositories {
         mavenLocal()

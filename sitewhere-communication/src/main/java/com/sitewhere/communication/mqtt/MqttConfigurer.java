@@ -60,6 +60,15 @@ public class MqttConfigurer {
 	mqtt.setCleanSession(configuration.isCleanSession());
 	LOGGER.info("MQTT clean session flag being set to '" + configuration.isCleanSession() + "'.");
 
+	// As the MQTT clients of the microbenchmarks (xp/micro-just: berserker MQTT
+	// 3.1.1, keepalive-interval 0) and of echo-clock: MQTT 3.1.1 instead of the
+	// 3.1 of fusesource, no keepalive instead of 30 s (through echarde remote
+	// gRPC, the PINGREQ does not reach the remote broker, which closes the
+	// connection at 1.5 x the keepalive)
+	mqtt.setVersion("3.1.1");
+	mqtt.setKeepAlive((short) 0);
+	LOGGER.info("MQTT version 3.1.1, keepalive 0.");
+
 	if (usingSSL || usingTLS) {
 	    handleSecureTransport(mqtt, configuration);
 	}
